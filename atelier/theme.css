@@ -1,0 +1,58 @@
+/* DATA BUKU: perpustakaan tua. Kertas, tinta, merah sampul, kartu katalog dan punggung buku. */
+:root { --paper: #f3ead8; --card: #fbf5e6; --ink: #231a12; --dim: #6f6049; --ox: #7a1f1f; --hair: rgba(35, 26, 18, .2);
+  --at-accent: #7a1f1f; --at-on-accent: #f3ead8; --at-deep: #4d1212; --at-mono: "Karla", sans-serif; }
+html { background: var(--paper); }
+body, body.at { width: min(1120px, 100% - 40px); margin: 0 auto; padding: 0 0 80px; font-family: "Karla", Arial, sans-serif; color: var(--ink); background: transparent; line-height: 1.55; }
+h1, h2, h3 { font-family: "Libre Caslon Text", Georgia, serif; font-weight: 400; }
+body > h2 { margin: clamp(30px, 6vh, 60px) 0 14px; font-size: clamp(3rem, 9vw, 7.2rem); line-height: .98; letter-spacing: -.03em; font-style: italic; }
+a { color: var(--ox); }
+
+/* Rak punggung buku di atas halaman */
+.bk-shelf { display: flex; align-items: flex-end; gap: 3px; height: clamp(76px, 13vh, 130px); margin-inline: calc((100vw - 100%) / -2); padding-inline: 12px; overflow: hidden; border-bottom: 7px solid #4a2f18; }
+.bk-shelf i { flex: 0 0 auto; width: var(--w); height: var(--h); background: var(--c); border-radius: 2px 2px 0 0; box-shadow: inset 3px 0 0 rgba(255, 255, 255, .12), inset -3px 0 0 rgba(0, 0, 0, .18); background-image: linear-gradient(transparent 16%, rgba(226, 192, 131, .75) 16% 18%, transparent 18% 22%, rgba(226, 192, 131, .75) 22% 24%, transparent 24%); transform: translateY(100%); animation: bk-rise .9s var(--at-out) var(--d) forwards; transition: transform .35s var(--at-out); }
+@keyframes bk-rise { to { transform: none; } }
+
+/* Layar pembuka: buku terbuka */
+.at-curtain__a, .at-curtain__b { border-radius: 0; inset: 0; }
+.bk-book { position: relative; width: min(66vw, 300px); height: min(44vw, 200px); perspective: 900px; }
+.bk-book span { position: absolute; top: 0; bottom: 0; width: 50%; background: #f3ead8; box-shadow: inset 0 0 0 1px rgba(0,0,0,.14); }
+.bk-book span:nth-child(1) { left: 0; background-image: repeating-linear-gradient(transparent 0 14px, rgba(35,26,18,.18) 14px 15px); background-position: 12px 14px; }
+.bk-book span:nth-child(2) { right: 0; background-image: repeating-linear-gradient(transparent 0 14px, rgba(35,26,18,.18) 14px 15px); background-position: 12px 14px; }
+.bk-book span:nth-child(3) { right: 0; background: #2f0c0c; transform-origin: left; box-shadow: inset 0 0 0 3px #b4935a; animation: bk-open 1.4s var(--at-ease) .15s forwards; backface-visibility: hidden; }
+@keyframes bk-open { to { transform: rotateY(-178deg); } }
+.at-curtain__cap { color: #f3ead8; letter-spacing: .16em; }
+
+/* Baris salam dan aksi */
+body > p { margin: 8px 0; color: var(--dim); }
+body > p b { color: var(--ink); }
+body > p:nth-of-type(2) a, body > form button, form button, form a { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 20px; border: 0; background: var(--ox); color: var(--paper); font: 700 .86rem "Karla", sans-serif; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background-color .25s, transform .4s var(--at-out); }
+body > p:nth-of-type(2) a:hover, form button:hover { background: var(--ink); transform: translateY(-2px); }
+form a { background: transparent; color: var(--ox); box-shadow: inset 0 0 0 1px var(--ox); margin-left: 6px; }
+
+/* Tabel sebagai kartu katalog */
+table { width: 100%; margin-top: 26px; border: 0 !important; border-collapse: collapse; background: var(--card); box-shadow: 0 22px 44px -32px rgba(35, 26, 18, .7); border-top: 4px double var(--ox) !important; }
+th { padding: 14px 16px; border: 0 !important; border-bottom: 1px solid var(--ox) !important; text-align: left; font: 700 .72rem "Karla", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--ox); }
+td { padding: 15px 16px; border: 0 !important; border-bottom: 1px solid var(--hair) !important; }
+td:nth-child(2) { font: italic 400 1.14rem "Libre Caslon Text", Georgia, serif; }
+td:nth-child(1), td:nth-child(5), td:nth-child(6) { font-variant-numeric: tabular-nums; color: var(--dim); }
+tr:hover td { background: rgba(122, 31, 31, .06); }
+@media (max-width: 760px) { table { display: block; overflow-x: auto; white-space: nowrap; } }
+
+/* Form dan masuk sebagai kartu perpustakaan */
+form { max-width: 620px; margin-top: 22px; padding: clamp(22px, 4vw, 42px); background: var(--card); background-image: repeating-linear-gradient(transparent 0 37px, rgba(122, 31, 31, .1) 37px 38px); box-shadow: 0 26px 50px -34px rgba(35, 26, 18, .75); position: relative; border-top: 4px double var(--ox); }
+form::before { content: ""; position: absolute; left: 50%; bottom: 14px; width: 20px; height: 20px; margin-left: -10px; border-radius: 50%; background: var(--paper); box-shadow: inset 0 2px 3px rgba(0,0,0,.28); }
+form p { margin: 0 0 18px; color: var(--ink); }
+form label { font: 700 .72rem "Karla", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--ox); }
+input { width: 100%; min-height: 44px; padding: 6px 2px; border: 0; border-bottom: 1px solid var(--ink); background: transparent; font: italic 400 1.1rem "Libre Caslon Text", Georgia, serif; color: var(--ink); }
+input:focus { outline: 0; border-bottom: 2px solid var(--ox); }
+p[style*="red"] { padding: 11px 14px; background: rgba(122, 31, 31, .1); color: var(--ox) !important; }
+
+.dt-bar { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 18px 0 12px; }
+.dt-bar input { flex: 1; min-width: 200px; font-size: 1rem; }
+.dt-bar button { min-height: 44px; padding: 8px 18px; border: 1px solid var(--ox); background: transparent; color: var(--ox); font: 700 .8rem "Karla", sans-serif; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+.dt-count { color: var(--dim); font-size: .86rem; }
+
+form.del-form { display: inline; max-width: none; margin: 0; padding: 0; background: none; box-shadow: none; border: 0; }
+form.del-form::before { display: none; }
+form.del-form button { min-height: 0; padding: 0; background: none; color: var(--ox); font: inherit; letter-spacing: 0; text-transform: none; text-decoration: underline; }
+form.del-form button:hover { background: none; transform: none; color: var(--ink); }
