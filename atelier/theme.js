@@ -3,7 +3,7 @@ window.AT = {
   ms: 1600,
   intro: '<div class="bk-book"><span></span><span></span><span></span></div>',
   bg: function (body) {
-    var C = ['#7a1f1f', '#23402f', '#2a3a55', '#b4935a', '#4d1212', '#3a2a1a', '#54633c', '#6e3b1f'];
+    var C = ['#9e2c44', '#0f748d', '#2b2a33', '#c9b99b', '#6e1d2f', '#3a3236', '#0b5567', '#8c7b63'];
     var s = document.createElement('div'), h = '';
     s.className = 'bk-shelf';
     s.setAttribute('aria-hidden', 'true');
